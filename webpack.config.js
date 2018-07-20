@@ -41,6 +41,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '*']
   },
-  plugins: [extractLESS],
+  plugins: [
+    extractLESS,
+    new ExtractTextPlugin("styles.less")
+  ],
   watch: true
 }

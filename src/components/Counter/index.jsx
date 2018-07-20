@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.less';
 import { connect } from 'react-redux';
 import { onIncrement, onDecrement, onResetCounter } from './actions';
 
@@ -8,10 +9,13 @@ class Counter extends React.Component {
   }
 
   render() {
+
+    console.log(styles);
+
     return (
       <div>
         <div>{this.props.counter}</div>
-        <button onClick={this.props.onIncrement}>+</button>
+        <button className={styles.btn} onClick={this.props.onIncrement}>+</button>
         <button onClick={this.props.onDecrement}>-</button>
         <button onClick={this.props.onResetCounter}>RESET</button>
       </div>
