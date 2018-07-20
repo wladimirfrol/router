@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { onAddFirstName, onAddSecondName, onReset } from './actions'
+import styles from './styles.less'
 
 class Form extends React.Component {
   constructor(props) {
@@ -23,20 +24,28 @@ class Form extends React.Component {
     const { onReset } = this.props;
 
     return (
-      <div>
-        <input 
-          type="text" 
-          value={firstName}
-          onChange={(event) => {this.addFirstName(event.target.value)}}
-        />
-        <input 
-          type="text" 
-          value={secondName}
-          onChange={(event) => {this.addSecondName(event.target.value)}}
-        />
-        <button onClick={onReset}>RESET</button>
-        <div>
-          {`${firstName} ${secondName}`}
+      <div className={styles.wrapper}>
+        <div className={styles.inputWrapper}>
+          <span>Enter please firstName:{" "}</span>
+          <input 
+            type="text" 
+            value={firstName}
+            onChange={(event) => {this.addFirstName(event.target.value)}}
+          />
+        </div>
+        
+        <div className={styles.inputWrapper}>
+          <span>Enter please secondName:{" "}</span>
+          <input 
+            type="text" 
+            value={secondName}
+            onChange={(event) => {this.addSecondName(event.target.value)}}
+          />
+        </div>
+        
+        <button onClick={onReset} className={styles.button}>RESET</button>
+        <div className={styles.result}>
+          {`Result: ${firstName} ${secondName}`}
         </div>
       </div>
     );
