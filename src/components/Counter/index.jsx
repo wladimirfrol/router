@@ -10,14 +10,11 @@ class Counter extends React.Component {
 
   render() {
 
-    console.log(styles);
-
     return (
       <div className={styles.wrapper}>
         <button className={styles.btnPlus} onClick={this.props.onIncrement}>+</button>
-        <div className={styles.counter}>{this.props.counter}</div>
+        <div className={styles.counter} onClick={this.props.onResetCounter}>{this.props.counter}</div>
         <button className={styles.btnMinus} onClick={this.props.onDecrement}>-</button>
-        <button className={styles.btnReset} onClick={this.props.onResetCounter}>RESET</button>
       </div>
     );
   }
