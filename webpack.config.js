@@ -1,4 +1,6 @@
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const extractLESS = new ExtractTextPlugin({ filename: "build.css" });
 
 module.exports = {
   devtool: 'source-map',
@@ -25,10 +27,20 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(less|css)$/,
+        exclude: /node_modules/,
+        use: extractLESS.extract([
+          { loader: "css-loader",  options: { sourceMap: true, localIdentName: "[local]_[hash:base64:5]" } }, 
+          { loader: "less-loader", options: { sourceMap: true } }
+        ])
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx', '*']
+  },
+  plugins: [extractLESS],
+  watch: true
 }
