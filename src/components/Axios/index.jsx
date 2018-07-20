@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { connect } from 'react-redux';
 import { onGetPosts, onReset } from "./actions";
+import styles from './styles.less';
+import Post from "../Post";
 
 class Axios extends React.Component {
   constructor(props) {
@@ -29,7 +31,7 @@ class Axios extends React.Component {
 
     if (!posts) {
       return (
-        <div>
+        <div className={styles.wrapper}>
           <button onClick={this.getResult}>GET POSTS</button>
         </div>
       );
@@ -37,7 +39,7 @@ class Axios extends React.Component {
 
     if(!flag) {
       return (
-        <div>
+        <div className={styles.wrapper}>
           <h3>Посты успешно получены</h3>
           <button onClick={() => {
             this.setState({ flag: true })
@@ -45,14 +47,25 @@ class Axios extends React.Component {
         </div>
       );
     }
+
+    console.log(posts);
     return (
-      <div>
-        <button onClick={() => {
-          this.props.onReset();
-          this.setState({ flag: false });
-        }}>RESET</button>
+      <div className={styles.wrapperPost}>
+        <div className={styles.wrapBtnReset}>
+          <button onClick={() => {
+            this.props.onReset();
+            this.setState({ flag: false });
+          }}>RESET</button>
+        </div>
+
         {posts.map((post, index) => (
-          <div key={index}>{`id: ${post.id} >> title: ${post.title}`}</div>
+          <Post
+            key={index}
+            title={post.title}
+            body={post.body}
+            postId={post.id}
+            userId={post.userId}
+          />
         ))}
       </div>
     );
