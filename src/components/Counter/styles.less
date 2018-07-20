@@ -1,5 +1,40 @@
-:local(.btn) {
-  height: 30px;
-  width: 30px;
-  background-color: red;
+:local(.wrapper) {
+  display: flex;
+  flex-wrap: wrap;
+  width: 170px;
+  height: 70px;
+  margin: 10px;
+
+  :local(.counter) {
+    width: 70px;
+    height: 50px;
+    font-size: 45px;
+    text-align: center;
+    background-color: rgb(228, 228, 228);
+  }
+
+  :local(.btnPlus) {
+    outline: none;
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  :local(.btnMinus) {
+    outline: none;
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  :local(.btnReset) {
+    outline: none;
+    height: 20px;
+    width: 170px;
+    background-color: blueviolet;
+  }
 }

@@ -13,11 +13,11 @@ class Counter extends React.Component {
     console.log(styles);
 
     return (
-      <div>
-        <div>{this.props.counter}</div>
-        <button className={styles.btn} onClick={this.props.onIncrement}>+</button>
-        <button onClick={this.props.onDecrement}>-</button>
-        <button onClick={this.props.onResetCounter}>RESET</button>
+      <div className={styles.wrapper}>
+        <button className={styles.btnPlus} onClick={this.props.onIncrement}>+</button>
+        <div className={styles.counter}>{this.props.counter}</div>
+        <button className={styles.btnMinus} onClick={this.props.onDecrement}>-</button>
+        <button className={styles.btnReset} onClick={this.props.onResetCounter}>RESET</button>
       </div>
     );
   }
