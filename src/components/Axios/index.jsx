@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { onGetPosts, onReset } from "./actions";
-import styles from './styles.less';
+import styles from "./styles.less";
 import Post from "../Post";
 
 class Axios extends React.Component {
@@ -26,7 +26,7 @@ class Axios extends React.Component {
   }
 
   render() {
-    const { result, flag } = this.state;
+    const { flag } = this.state;
     const { posts } = this.props;
 
     if (!posts) {
@@ -37,25 +37,32 @@ class Axios extends React.Component {
       );
     }
 
-    if(!flag) {
+    if (!flag) {
       return (
         <div className={styles.wrapper}>
           <h3>Посты успешно получены</h3>
-          <button onClick={() => {
-            this.setState({ flag: true })
-          }}>Отобразить</button>
+          <button
+            onClick={() => {
+              this.setState({ flag: true });
+            }}
+          >
+            Отобразить
+          </button>
         </div>
       );
     }
 
-    console.log(posts);
     return (
       <div className={styles.wrapperPost}>
         <div className={styles.wrapBtnReset}>
-          <button onClick={() => {
-            this.props.onReset();
-            this.setState({ flag: false });
-          }}>RESET</button>
+          <button
+            onClick={() => {
+              this.props.onReset();
+              this.setState({ flag: false });
+            }}
+          >
+            RESET
+          </button>
         </div>
 
         {posts.map((post, index) => (
@@ -76,10 +83,10 @@ const mapStateToProps = state => {
   return {
     posts: state.posts
   };
-}
+};
 
 const mapDispatchToProps = dispatch => ({
-  onGetPosts: (posts) => dispatch(onGetPosts(posts)),
+  onGetPosts: posts => dispatch(onGetPosts(posts)),
   onReset: () => dispatch(onReset())
 });
 
