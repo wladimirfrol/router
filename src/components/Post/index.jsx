@@ -22,6 +22,11 @@ class Post extends React.Component {
                     <div className={styles.userId}>
                         <span>{`userId ${userId}`}</span>
                     </div>
+                    <div className={styles.vertLine}></div>
+                    <div className={styles.btnLike}>
+                        <button>Like</button>
+                    </div>
+                    <div className={styles.vertLine}></div>
                     <div className={styles.postId}>
                         <span>{`postId ${postId}`}</span>
                     </div>

@@ -15,6 +15,12 @@
 		font-size: 18px;
 		display: flex;
 		justify-content: center;
+		margin-bottom: 5px;
+
+		:local(span) {
+			text-align: center;
+			font-weight: bold;
+		}
 	}
 
 	:local(.body) {
@@ -28,6 +34,7 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
+		margin-top: 4px;
 
 		:local(.userId) {
 			font-weight: bold;
@@ -35,6 +42,27 @@
 
 		:local(.postId) {
 			font-weight: bold;
+		}
+
+		:local(.vertLine) {
+			height: 80%;
+			width: 1px;
+			background-color: gray;
+		}
+
+		:local(.btnLike) {
+			:local(button) {
+				border: 1px solid gray;
+				background-color: rgb(149, 247, 111);
+				font-weight: bold;
+				border-radius: 10px;
+				outline: none;
+
+				&:local(:hover) {
+					background-color: rgb(128, 253, 78);
+					cursor: pointer;
+				}
+			}
 		}
 	}
 }
