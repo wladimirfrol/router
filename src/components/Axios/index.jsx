@@ -11,7 +11,8 @@ class Axios extends React.Component {
     super(props);
 
     this.state = {
-      flag: false
+      flag: false,
+      error: null
     };
 
     this.getResult = this.getResult.bind(this);
@@ -25,17 +26,22 @@ class Axios extends React.Component {
       .then(response => {
         this.props.onGetPosts(response.data);
       })
-      .catch();
+      .catch(error => {
+        this.setState({error: error});
+      });
   }
 
   render() {
-    const { flag } = this.state;
+    const { flag, error } = this.state;
     const { posts } = this.props;
 
     if (!posts) {
       return (
         <div className={styles.wrapper}>
           <button onClick={this.getResult}>GET POSTS</button>
+          {error && (
+            <div>{`Ошибка! ${error.message}`}</div>
+          )}
         </div>
       );
     }
