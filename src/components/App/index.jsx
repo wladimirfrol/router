@@ -14,8 +14,8 @@ class App extends React.Component {
       <div>
         <Counter />
         <Form />
-        <Toggle value={true}/>
-        <Toggle value={true}/>
+        <Toggle value={true} title='eng1'/>
+        <Toggle value={true} title='ENG2'/>
         <Axios />
       </div>
     );

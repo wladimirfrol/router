@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.less';
+import { smallTitle } from './utils';
 
 class Toggle extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            value: this.props.value
+            value: this.props.value,
+            title: ''
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -22,9 +24,13 @@ class Toggle extends React.Component {
 
     render() {   
         const { value } = this.state;
+        const { title, maxlengthTitle } = this.props;
+
+        
 
         return (
-            <div className={value ? styles.wrapTrue : styles.wrapFalse}>
+            <div className={styles.wrapper}>
+                <div className={styles.title}>{smallTitle(title, maxlengthTitle).toUpperCase()}</div>
                 <div className={value ? styles.railTrue : styles.railFalse} onClick={this.handleClick}>
                     <div className={value ? styles.sliderTrue : styles.sliderFalse} onClick={this.handleClick}>
                         {value ? 'ON' : 'OFF'}
@@ -36,11 +42,15 @@ class Toggle extends React.Component {
 }
 
 Toggle.propTypes = {
-    value: PropTypes.bool
+    value: PropTypes.bool,
+    title: PropTypes.string,
+    maxlengthTitle: PropTypes.number
 }
 
 Toggle.defaultProps = {
-    value: false
+    title: '',
+    value: false,
+    maxlengthTitle: 4
 }
 
 export default Toggle;
