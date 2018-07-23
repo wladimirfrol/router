@@ -2,6 +2,7 @@ import React from 'react';
 import Counter from '../Counter';
 import Form from '../Form';
 import Axios from '../Axios';
+import Toggle from '../Toggle';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class App extends React.Component {
       <div>
         <Counter />
         <Form />
+        <Toggle value={true}/>
+        <Toggle value={true}/>
         <Axios />
       </div>
     );

@@ -1,0 +1,97 @@
+// ON
+:local(.wrapTrue) {
+    height: 100px;
+    width: 50px;
+    border-radius: 15px;
+    background-color: #c3d8b4;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    
+
+    :local(.railTrue) {
+        width: 20px;
+        height: 70px;
+        background-color: rgba(68, 225, 15, 0.871);
+        border-radius: 20px;
+        position: relative;
+        cursor: pointer;
+        -webkit-transition: all .4s;
+        -moz-transition: all .4s;
+        -ms-transition: all .4s;
+        -o-transition: all .4s;
+        transition: all .4s;
+
+        :local(.sliderTrue) {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: #efefef;
+            color: rgba(68, 225, 15, 0.871);
+            top: -5px;
+            left: -5px;
+            cursor: pointer;
+            -webkit-transition: all .4s;
+            -moz-transition: all .4s;
+            -ms-transition: all .4s;
+            -o-transition: all .4s;
+            transition: all .4s;
+        }
+    }
+}
+
+//OFF
+
+:local(.wrapFalse) {
+    height: 100px;
+    width: 50px;
+    border-radius: 15px;
+    background-color: #c3d8b4;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+
+    :local(.railFalse) {
+        width: 20px;
+        height: 70px;
+        background-color: rgba(225, 15, 15, 0.871);
+        border-radius: 20px;
+        position: relative;
+        cursor: pointer;
+        -webkit-transition: all .4s;
+        -moz-transition: all .4s;
+        -ms-transition: all .4s;
+        -o-transition: all .4s;
+        transition: all .4s;
+
+        :local(.sliderFalse) {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: #efefef;
+            color: rgba(225, 15, 15, 0.871);
+            top: 45px;
+            left: -5px;
+            cursor: pointer;
+            -webkit-transition: all .4s;
+            -moz-transition: all .4s;
+            -ms-transition: all .4s;
+            -o-transition: all .4s;
+            transition: all .4s;
+        }
+    }
+}
