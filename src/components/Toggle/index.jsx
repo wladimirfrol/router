@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.less';
 import { smallTitle } from './utils';
+import TestHoc from '../HOC/TestHoc';
 
 class Toggle extends React.Component {
     constructor(props) {
@@ -53,4 +54,4 @@ Toggle.defaultProps = {
     maxlengthTitle: 4
 }
 
-export default Toggle;
+export default TestHoc(Toggle);
