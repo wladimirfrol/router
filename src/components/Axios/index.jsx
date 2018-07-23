@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { onGetPosts, onReset } from "./actions";
 import styles from "./styles.less";
 import Post from "../Post";
+import PropTypes from 'prop-types';
 
 class Axios extends React.Component {
   constructor(props) {
@@ -17,8 +18,10 @@ class Axios extends React.Component {
   }
 
   getResult() {
+    const { api } = this.props;
+
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get(api)
       .then(response => {
         this.props.onGetPosts(response.data);
       })
@@ -77,6 +80,14 @@ class Axios extends React.Component {
       </div>
     );
   }
+}
+
+Axios.propTypes = {
+  api: PropTypes.string
+}
+
+Axios.defaultProps = {
+  api: ''
 }
 
 const mapStateToProps = state => {

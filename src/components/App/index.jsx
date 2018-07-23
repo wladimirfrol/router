@@ -16,7 +16,7 @@ class App extends React.Component {
         <Form />
         <Toggle value={true} title='eng1'/>
         <Toggle value={true} title='ENG2'/>
-        <Axios />
+        <Axios api='https://jsonplaceholder.typicode.com/posts'/>
       </div>
     );
   }
