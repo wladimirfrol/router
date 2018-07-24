@@ -1,13 +1,13 @@
 import {
-  GET_POSTS,
-  RESET
+  QUERY_GET_ELEMENTS,
+  RESET_QUERY_STATE
 } from './consts'
 
 export default function(state = null, action) {
   switch(action.type) {
-    case GET_POSTS:
+    case QUERY_GET_ELEMENTS:
       return [...action.payload];
-    case RESET:
+    case RESET_QUERY_STATE:
       return null;
     default:
       return state;

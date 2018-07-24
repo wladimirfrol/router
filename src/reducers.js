@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import counter from './components/Counter/reducer';
 import form from './components/Form/reducer';
-import posts from './components/Query/reduser';
+import elements from './components/Query/reduser';
 
 const allReducers = combineReducers({
   counter,
   form,
-  posts
+  elements
 });
 
 export default allReducers;

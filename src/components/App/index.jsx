@@ -15,6 +15,7 @@ class App extends React.Component {
       <div>
         <Query
           api='https://jsonplaceholder.typicode.com/posts'
+          elemName='posts'
           rendererChild={(post) => {
             return(
               <Post

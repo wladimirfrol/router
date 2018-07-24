@@ -1,13 +1,13 @@
 import {
-  GET_POSTS,
-  RESET
+  QUERY_GET_ELEMENTS,
+  RESET_QUERY_STATE
 } from './consts'
 
-export const onGetPosts = (posts) => ({
-  type: GET_POSTS,
-  payload: posts
+export const onGetElements = (elements) => ({
+  type: QUERY_GET_ELEMENTS,
+  payload: elements
 });
 
-export const onReset= () => ({
-  type: RESET
+export const onResetQueryState= () => ({
+  type: RESET_QUERY_STATE
 });

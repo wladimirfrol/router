@@ -1,9 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { onGetPosts, onReset } from "./actions";
+import { onGetElements, onResetQueryState } from "./actions";
 import styles from "./styles.less";
-import Post from "../Post";
 import PropTypes from 'prop-types';
 
 class Query extends React.Component {
@@ -15,16 +14,16 @@ class Query extends React.Component {
       error: null
     };
 
-    this.getResult = this.getResult.bind(this);
+    this.getElements = this.getElements.bind(this);
   }
 
-  getResult() {
+  getElements() {
     const { api } = this.props;
 
     axios
       .get(api)
       .then(response => {
-        this.props.onGetPosts(response.data);
+        this.props.onGetElements(response.data);
       })
       .catch(error => {
         this.setState({error: error});
@@ -33,12 +32,12 @@ class Query extends React.Component {
 
   render() {
     const { flag, error } = this.state;
-    const { posts, rendererChild } = this.props;
+    const { elements, rendererChild, elemName } = this.props;
 
-    if (!posts) {
+    if (!elements) {
       return (
         <div className={styles.wrapper}>
-          <button onClick={this.getResult}>GET POSTS</button>
+          <button onClick={this.getElements}>{`GET ${elemName.toUpperCase()}`}</button>
           {error && (
             <div>{`Ошибка! ${error.message}`}</div>
           )}
@@ -49,7 +48,7 @@ class Query extends React.Component {
     if (!flag) {
       return (
         <div className={styles.wrapper}>
-          <h3>Посты успешно получены</h3>
+          <h3>{`${elemName.toUpperCase()} успешно получены`}</h3>
           <button
             onClick={() => {
               this.setState({ flag: true });
@@ -66,7 +65,7 @@ class Query extends React.Component {
         <div className={styles.wrapBtnReset}>
           <button
             onClick={() => {
-              this.props.onReset();
+              this.props.onResetQueryState();
               this.setState({ flag: false });
             }}
           >
@@ -74,9 +73,9 @@ class Query extends React.Component {
           </button>
         </div>
 
-        {posts.map((post, index) => (
+        {elements.map((element, index) => (
           <div key={index}>
-            {rendererChild(post)}
+            {rendererChild(element)}
           </div>
         ))}
       </div>
@@ -86,22 +85,24 @@ class Query extends React.Component {
 
 Query.propTypes = {
   api: PropTypes.string,
-  rendererChild: PropTypes.func
+  rendererChild: PropTypes.func,
+  elemName: PropTypes.string
 }
 
 Query.defaultProps = {
-  api: ''
+  api: '',
+  elemName: 'ELEMENTS'
 }
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts
+    elements: state.elements
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onGetPosts: posts => dispatch(onGetPosts(posts)),
-  onReset: () => dispatch(onReset())
+  onGetElements: elements => dispatch(onGetElements(elements)),
+  onResetQueryState: () => dispatch(onResetQueryState())
 });
 
 export default connect(

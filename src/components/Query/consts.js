@@ -1,2 +1,2 @@
-export const GET_POSTS = 'GET_POSTS';
-export const RESET = 'RESET';
+export const QUERY_GET_ELEMENTS = 'QUERY_GET_ELEMENTS';
+export const RESET_QUERY_STATE = 'RESET_QUERY_STATE';
