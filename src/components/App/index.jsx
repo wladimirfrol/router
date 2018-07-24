@@ -1,8 +1,9 @@
 import React from 'react';
 import Counter from '../Counter';
 import Form from '../Form';
-import Axios from '../Axios';
+import Query from '../Query';
 import Toggle from '../Toggle';
+import Post from '../Post';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,11 +13,19 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Counter />
-        <Form />
-        <Toggle value={true} title='eng1'/>
-        <Toggle value={true} title='ENG2'/>
-        <Axios api='https://jsonplaceholder.typicode.com/posts'/>
+        <Query
+          api='https://jsonplaceholder.typicode.com/posts'
+          rendererChild={(post) => {
+            return(
+              <Post
+                title={post.title}
+                body={post.body}
+                postId={post.id}
+                userId={post.userId}
+              />
+            );
+          }}
+        />
       </div>
     );
   }

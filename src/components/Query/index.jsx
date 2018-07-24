@@ -6,7 +6,7 @@ import styles from "./styles.less";
 import Post from "../Post";
 import PropTypes from 'prop-types';
 
-class Axios extends React.Component {
+class Query extends React.Component {
   constructor(props) {
     super(props);
 
@@ -33,7 +33,7 @@ class Axios extends React.Component {
 
   render() {
     const { flag, error } = this.state;
-    const { posts } = this.props;
+    const { posts, rendererChild } = this.props;
 
     if (!posts) {
       return (
@@ -75,24 +75,21 @@ class Axios extends React.Component {
         </div>
 
         {posts.map((post, index) => (
-          <Post
-            key={index}
-            title={post.title}
-            body={post.body}
-            postId={post.id}
-            userId={post.userId}
-          />
+          <div key={index}>
+            {rendererChild(post)}
+          </div>
         ))}
       </div>
     );
   }
 }
 
-Axios.propTypes = {
-  api: PropTypes.string
+Query.propTypes = {
+  api: PropTypes.string,
+  rendererChild: PropTypes.func
 }
 
-Axios.defaultProps = {
+Query.defaultProps = {
   api: ''
 }
 
@@ -110,4 +107,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Axios);
+)(Query);
