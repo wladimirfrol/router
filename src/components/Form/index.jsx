@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { onAddFirstName, onAddSecondName, onReset } from './actions'
-import styles from './styles.less'
+import styles from './styles.less';
+import axios from 'axios';
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
+
+    this.confirm = this.confirm.bind(this);
   }
 
   addFirstName(val) {
@@ -16,6 +19,22 @@ class Form extends React.Component {
   addSecondName(val) {
     const { onAddSecondName } = this.props;
     onAddSecondName(val);
+  }
+
+  confirm() {
+    const { firstName, secondName } = this.props.form;
+
+    axios({
+      method: 'post',
+      url: 'https://jsonplaceholder.typicode.com/posts',
+      data: {
+        login: firstName,
+        password: secondName
+      }
+    })
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+    console.log(123);
   }
 
   render() {
@@ -43,7 +62,8 @@ class Form extends React.Component {
           />
         </div>
         
-        <button onClick={onReset} className={styles.button}>RESET</button>
+        <button onClick={onReset} className={styles.buttonReset}>RESET</button>
+        <button onClick={this.confirm} className={styles.buttonConfirm}>CONFIRM</button>
         <div className={styles.result}>
           {`Result: ${firstName} ${secondName}`}
         </div>

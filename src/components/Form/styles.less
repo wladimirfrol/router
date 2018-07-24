@@ -1,7 +1,7 @@
 :local(.wrapper) {
     display: flex;
     flex-wrap: wrap;
-    height: 150px;
+    height: 160px;
     width: 300px;
     border: 1px solid rgb(216, 216, 216);
     align-items: center;
@@ -29,13 +29,23 @@
         }
     }
 
-    :local(.button) {
+    :local(.buttonReset) {
         width: 300px;
         height: 29px;
         background: red;
         border: none;
         cursor: pointer;
         border-radius: 15px;
+        margin-bottom: 5px;
+    }
+
+    :local(.buttonConfirm) {
+        width: 300px;
+        height: 29px;
+        background: green;
+        border: none;
+        cursor: pointer;
+        border-radius: 15px;  
     }
 
     :local(.result) {
