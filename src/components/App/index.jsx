@@ -1,38 +1,86 @@
 import React from 'react';
-import Counter from '../Counter';
-import Form from '../Form';
-import Query from '../Query';
-import Toggle from '../Toggle';
-import Post from '../Post';
-import Auth from '../Auth';
+
+import Route from '../Route';
+import Switch from '../Switch';
+
+import Index from '../../pages/index';
+import Contacts from '../../pages/contacts';
+import About from '../../pages/about';
+
+import { connect } from 'react-redux';
+import {
+  onHandleUrl,
+  onGoBack,
+  onGoForward
+} from './actions';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      url: '/'
+    }
+
+    this.handleInput = this.handleInput.bind(this);
+    this.changeUrl = this.changeUrl.bind(this);
+  }
+
+  handleInput(event) {
+    this.setState({ url: event.target.value });
+  }
+
+  changeUrl() {
+    const { url } = this.state;
+    const { onHandleUrl } = this.props;
+
+    onHandleUrl(url);
   }
 
   render() {
-    return (
+    const { url, historyIndex, history } = this.props.router;
+
+    console.log(this.props.router);
+
+    return(
       <div>
-        <Auth apiUrl='http://levelup.name/api/user/signin'>
-          <Query
-            api='https://jsonplaceholder.typicode.com/posts'
-            elemName='posts'
-            rendererChild={(post) => {
-              return(
-                <Post
-                  title={post.title}
-                  body={post.body}
-                  postId={post.id}
-                  userId={post.userId}
-                />
-              );
-            }}
-          />
-        </Auth>
+        <input type="text" onChange={this.handleInput} value={this.state.url}/>
+        <button onClick={this.changeUrl}>CHANGE URL</button>
+        <button 
+          onClick={this.props.onGoBack}
+          style={historyIndex === 0 ? {background: 'gray'} : {background: 'white'}}
+        >PREV</button>
+        <button 
+          onClick={this.props.onGoForward}
+          style={historyIndex + 1 === history.length ? {background: 'gray'} : {background: 'white'}}
+        >NEXT</button>
+
+        <hr/>
+
+        <Switch url={url}>
+          <Route path='/'  component={<Index />}/>
+          <Route path='/contacts'  component={<Contacts />}/>
+          <Route path='/about'  component={<About />}/>
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    router: state.router
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  onHandleUrl: (url) => dispatch(onHandleUrl(url)),
+  onGoBack: () => dispatch(onGoBack()),
+  onGoForward: () => dispatch(onGoForward()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
