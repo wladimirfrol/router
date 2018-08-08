@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Route extends React.Component {
@@ -21,12 +20,4 @@ Route.PropTypes = {
   component: PropTypes.func
 }
 
-const mapStateToProps = (state) => {
-  return {
-    router: state.router,
-  };
-}
-
-export default connect(
-  mapStateToProps
-)(Route);
+export default Route;

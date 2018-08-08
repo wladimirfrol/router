@@ -1,4 +1,5 @@
 import React from 'react';
+import withMyRouter from '../withMyRouter';
 
 class Switch extends React.Component {
   constructor(props) {
@@ -6,17 +7,19 @@ class Switch extends React.Component {
   }
 
   render() {
-    const { children, url } = this.props;
+    const { children } = this.props;
+    const { url } = this.props.router;
 
     let child;
 
-    children.map(element => {
-      const { path } = element.props;
-
+    for(let i = 0; i < children.length; i++) {
+      const { path } = children[i].props;
+      console.log(path);
       if(path === url) {
-        child = element;
+        child = children[i];
+        break;
       }
-    });
+    }
 
     if(child) {
       return child;
@@ -28,4 +31,4 @@ class Switch extends React.Component {
   }
 }
 
-export default Switch;
+export default withMyRouter(Switch);
