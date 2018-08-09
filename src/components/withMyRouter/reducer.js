@@ -6,8 +6,8 @@ import {
 
 const initialState = {
   historyIndex: 0,
-  history: ['/'],
-  url: '/'
+  url: '/',
+  history: ['/']
 }
 
 export default function(state = initialState, action) {
