@@ -5,7 +5,7 @@ import {
 } from './consts';
 
 const initialState = {
-  historyIndex: 0, // = history.length
+  historyIndex: 0,
   history: ['/'],
   url: '/'
 }
@@ -14,8 +14,9 @@ export default function(state = initialState, action) {
 
   switch(action.type) {
     case HANDLE_URL:
+      state.history.length = state.historyIndex + 1; // удаление последующей истории при откате назад и изменении
       return {
-        historyIndex: state.history.length,
+        historyIndex: state.historyIndex + 1,
         url: action.payload,
         history: [
           ...state.history,

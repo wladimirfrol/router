@@ -14,7 +14,7 @@ class Switch extends React.Component {
 
     for(let i = 0; i < children.length; i++) {
       const { path } = children[i].props;
-      console.log(path);
+
       if(path === url) {
         child = children[i];
         break;
