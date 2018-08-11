@@ -1,6 +1,8 @@
 import React from "react";
 import withMyRouter from "../withMyRouter";
 
+import styles from './styles.less';
+
 class Panel extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +15,13 @@ class Panel extends React.Component {
     this.changeUrl = this.changeUrl.bind(this);
     this.goBack = this.goBack.bind(this);
     this.goForward = this.goForward.bind(this);
+    this.keyPressInput = this.keyPressInput.bind(this);
+  }
+
+  keyPressInput(e) {
+    if(e.key == 'Enter') {
+      this.changeUrl();
+    }
   }
 
   handleInput(event) {
@@ -43,25 +52,29 @@ class Panel extends React.Component {
   render() {
     const { historyIndex, history } = this.props.router;
 
-    return (
-      <div>
-        <input type="text" onChange={this.handleInput} value={this.state.url} />
-        <button onClick={this.changeUrl}>CHANGE URL</button>
+    return [
+      <div className={styles.wrapper} key='1'>
         <button
+          className={styles.btnPage}
           disabled={historyIndex === 0 ? true : false}
           onClick={this.goBack}
         >
-          PREV
+          &#60;
         </button>
         <button
+          className={styles.btnPage}
           disabled={historyIndex + 1 === history.length ? true : false}
           onClick={this.goForward}
         >
-          NEXT
+          &#62;
         </button>
-        <hr />
-      </div>
-    );
+        <input type="text" onChange={this.handleInput} onKeyPress={this.keyPressInput} value={this.state.url} />
+        <button
+          className={styles.btnGo} 
+          onClick={this.changeUrl}>GO</button>
+      </div>,
+      <hr key='2' />
+    ];
   }
 }
 
