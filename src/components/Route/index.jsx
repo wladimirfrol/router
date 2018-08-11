@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class Route extends React.Component {
   constructor(props) {
@@ -13,11 +12,6 @@ class Route extends React.Component {
       <div>{component}</div>
     );
   }
-}
-
-Route.PropTypes = {
-  path: PropTypes.string,
-  component: PropTypes.func
 }
 
 export default Route;
