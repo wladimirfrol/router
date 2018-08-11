@@ -35,6 +35,10 @@ module.exports = {
           { loader: "css-loader",  options: { sourceMap: true, localIdentName: "[local]_[hash:base64:5]" } }, 
           { loader: "less-loader", options: { sourceMap: true } }
         ])
+      },
+      {
+        test: /\.(jpg|png)$/,
+        loader: "url-loader?mimetype=image/png"
       }
     ]
   },

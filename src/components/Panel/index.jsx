@@ -49,6 +49,10 @@ class Panel extends React.Component {
     onHandleUrl(url);
   }
 
+  refresh() {
+    window.location.reload();
+  }
+
   render() {
     const { historyIndex, history } = this.props.router;
 
@@ -68,6 +72,7 @@ class Panel extends React.Component {
         >
           &#62;
         </button>
+        <button className={styles.btnRefresh} onClick={this.refresh}></button>
         <input type="text" onChange={this.handleInput} onKeyPress={this.keyPressInput} value={this.state.url} />
         <button
           className={styles.btnGo} 
